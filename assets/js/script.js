@@ -74,10 +74,11 @@ document.querySelector("#save-task").textContent = "Add Task";
 
 var createTaskEl = function(taskDataObj) {
   
+  
 
   //create lsit item
   var listItemEl = document.createElement("li");
-listItemEl.className = "task-item";
+listItemEl.className = "task-item"; 
 
 //add task id as a custom attribute
 listItemEl.setAttribute("data-task-id", taskIdCounter);
@@ -235,7 +236,27 @@ saveTasks();
 };
 var saveTasks = function(){
   localStorage.setItem("tasks",JSON.stringify(tasks));  
+  
 }  
+//gets task items from localStorage
+//converts tasks from the string format back into an array of objects
+//Iterates through a tasks array and creates task elements on the page from it
+var loadTasks = function (){
+  var saveTasks = localStorage.getItem("tasks");
+  console.log(tasks);
+  if (!saveTasks) {
+    return false;
+  }
+  tasks = JSON.parse(saveTasks);
+
+  for (let i = 0; i < tasks.length; i++) {
+  
+    
+  }
+
+}
+
+
 
 formEl.addEventListener("submit", taskFormHandler);
 
@@ -243,3 +264,4 @@ pageContentEl.addEventListener("click", taskButtonHandler);
 
 pageContentEl.addEventListener('change', taskStatusChangeHandler);
 
+loadTasks();
